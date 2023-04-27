@@ -1,0 +1,36 @@
+<!DOCTYPE FilterScript>
+<FilterScript>
+ <filter name="Remove Duplicate Vertices"/>
+ <filter name="Remove Duplicate Faces"/>
+ <filter name="Repair non Manifold Vertices by splitting">
+  <Param name="VertDispRatio" type="RichFloat" description="Vertex Displacement Ratio" value="0" tooltip="This parameter denote the ratio ⍺ of displacement of a vertex. When a vertex &lt;i>v&lt;/i> is split, it is moved towards the barycenter &lt;i>b&lt;/i> of the FF connected faces sharing it of a (&lt;i>v&lt;/i>-&lt;i>b&lt;/i>)*⍺. When ⍺ is zero vertex is not displaced. When ⍺ is 0.5 the new vertex is half away toward the barycenter of the face. Reasonable values are in the [0 .. 0.1] range."/>
+ </filter>
+ <filter name="Select non Manifold Vertices"/>
+ <filter name="Remove Zero Area Faces"/>
+ <filter name="Remove Isolated Folded Faces by Edge Flip"/>
+ <filter name="Select non Manifold Vertices"/>
+ <filter name="Repair non Manifold Edges">
+  <Param enum_cardinality="2" name="method" type="RichEnum" description="Method" value="0" enum_val0="Remove Faces" tooltip="Selects wether to remove non manifold edges by removing faces or by splitting vertices." enum_val1="Split Vertices"/>
+ </filter>
+ <filter name="Select Self Intersecting Faces"/>
+ <filter name="Merge Close Vertices">
+  <Param name="Threshold" max="0.00305086" type="RichAbsPerc" description="Merging distance" value="3.0509e-05" min="0" tooltip="All the vertices that closer than this threshold are merged together. Use very small values, default values is 1/10000 of bounding box diagonal. "/>
+ </filter>
+ <filter name="Remove Vertices wrt Quality">
+  <Param name="MaxQualityThr" max="0" type="RichAbsPerc" description="Delete all vertices with quality under:" value="0" min="0" tooltip=""/>
+ </filter>
+ <filter name="Smooth Face Normals"/>
+ <filter name="Remove Zero Area Faces"/>
+ <filter name="Select non Manifold Vertices"/>
+ <filter name="Delete Selected Vertices"/>
+ <filter name="Cut mesh along crease edges">
+  <Param name="angleDeg" type="RichFloat" description="Crease Angle (degree)" value="90" tooltip="If the angle between the normals of two adjacent faces is &lt;b>larger&lt;/b> that this threshold the edge is considered a creased and the mesh is cut along it."/>
+ </filter>
+ <filter name="Re-Compute Vertex Normals">
+  <Param enum_cardinality="4" name="weightMode" enum_val3="As defined by N. Max" type="RichEnum" description="Weighting Mode:" enum_val2="By Angle" value="0" enum_val0="Simple Average" tooltip="" enum_val1="By Area"/>
+ </filter>
+ <filter name="Re-Compute Vertex Normals">
+  <Param enum_cardinality="4" name="weightMode" enum_val3="As defined by N. Max" type="RichEnum" description="Weighting Mode:" enum_val2="By Angle" value="2" enum_val0="Simple Average" tooltip="" enum_val1="By Area"/>
+ </filter>
+ <filter name="Simplification: Edge Collapse for Marching Cube meshes"/>
+</FilterScript>

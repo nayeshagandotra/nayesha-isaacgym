@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="cracker_box">
+  <link name="craxker_box">
+    <visual>
+      <origin xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="ycb/003_cracker_box/filtered_textured.obj" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="ycb/003_cracker_box/filtered_collision.obj" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.411"/>
+      <inertia ixx="0.00015" ixy="-0.00001" ixz="0.0" iyy="0.00011" iyz="-0.00001" izz="0.00006"/>
+    </inertial>
+  </link>
+</robot>
