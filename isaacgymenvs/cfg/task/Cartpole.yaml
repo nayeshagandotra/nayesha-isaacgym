@@ -9,6 +9,7 @@ env:
   envSpacing: 4.0
   resetDist: 3.0
   maxEffort: 400.0
+  length_scaling: 2.0
 
   clipObservations: 5.0
   clipActions: 1.0

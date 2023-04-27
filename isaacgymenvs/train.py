@@ -32,6 +32,7 @@ import logging
 import os
 import datetime
 
+
 # noinspection PyUnresolvedReferences
 import isaacgym
 
@@ -40,9 +41,10 @@ from hydra.utils import to_absolute_path
 from isaacgymenvs.tasks import isaacgym_task_map
 from omegaconf import DictConfig, OmegaConf
 import gym
-
+import matplotlib.pyplot as plt
 from isaacgymenvs.utils.reformat import omegaconf_to_dict, print_dict
 from isaacgymenvs.utils.utils import set_np_formatting, set_seed
+import torch
 
 def preprocess_train_config(cfg, config_dict):
     """
@@ -194,8 +196,29 @@ def launch_rlg_hydra(cfg: DictConfig):
         'sigma': cfg.sigma if cfg.sigma != '' else None
     })
 
+    reward = cfg.checkpoint['last_mean_rewards']
+    print(f"reward is {reward}")
+
     if cfg.wandb_activate and rank == 0:
         wandb.finish()
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
+    logger = logging.getLogger(__name__)
+
+    #using torch for plotting
+    # checkpoint = torch.load('runs/Cartpole_07-19-52-22/nn/last_Cartpole_ep_100_rew__277.2_.pth')
+    # print(f"checkpoint is {checkpoint.keys()}")
+    # print(f"checkpoint reward is {checkpoint['epoch']}")
+    # train_loss = checkpoint['train_loss']
+    # val_loss = checkpoint['val_loss']
+    # epochs = range(len(train_loss))
+
+    # plt.plot(epochs, train_loss, label='Training loss')
+    # plt.plot(epochs, val_loss, label='Validation loss')
+    # plt.title('Training Curve')
+    # plt.xlabel('Epoch')
+    # plt.ylabel('Loss')
+    # plt.legend()
+    # plt.show()
     launch_rlg_hydra()

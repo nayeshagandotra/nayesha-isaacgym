@@ -1,4 +1,10 @@
 videos
+.vscode
+
+# Run info
+*.tfevents.*
+*.pt
+
 /isaacgymenvs/logs
 *train_dir*
 *wandb*

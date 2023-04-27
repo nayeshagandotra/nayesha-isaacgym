@@ -28,10 +28,13 @@
 
 import numpy as np
 import os
-import torch
+
+
 
 from isaacgym import gymutil, gymtorch, gymapi
+import torch
 from .base.vec_task import VecTask
+
 
 class Cartpole(VecTask):
 
@@ -41,6 +44,8 @@ class Cartpole(VecTask):
         self.reset_dist = self.cfg["env"]["resetDist"]
 
         self.max_push_effort = self.cfg["env"]["maxEffort"]
+        self.length_scaling = self.cfg["env"]["length_scaling"]
+        print(f"length scale is {self.length_scaling}")
         self.max_episode_length = 500
 
         self.cfg["env"]["numObservations"] = 4
@@ -86,6 +91,7 @@ class Cartpole(VecTask):
         asset_options = gymapi.AssetOptions()
         asset_options.fix_base_link = True
         cartpole_asset = self.gym.load_asset(self.sim, asset_root, asset_file, asset_options)
+        print(f"cartpole asset is {cartpole_asset}")
         self.num_dof = self.gym.get_asset_dof_count(cartpole_asset)
 
         pose = gymapi.Transform()
@@ -194,3 +200,5 @@ def compute_cartpole_reward(pole_angle, pole_vel, cart_vel, cart_pos,
     reset = torch.where(progress_buf >= max_episode_length - 1, torch.ones_like(reset_buf), reset)
 
     return reward, reset
+
+print("I'm happy!")
